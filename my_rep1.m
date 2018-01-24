@@ -1,7 +1,5 @@
-%function  [dataset]=my_rep1(mf)
-%for t=1:0
-mf= prnist([1,9],[1:100]);
-mf1=prnist([1,9],[501:550]);
+mf= prnist([0:9],[1:1000]);
+mf1=prnist([0:9],[501:550]);
 
 prwaitbar off
 im = data2im(mf);
@@ -14,7 +12,7 @@ len=length(im);
 len1=length(im1);
 
 imnew=zeros(len,1024);
-imnew1=zeros(len2,1024);
+imnew1=zeros(len1,1024);
 
 for i=1:len
     imNoNoise = cDeNoise(im{i});
@@ -33,7 +31,7 @@ end
 
 trnset= prdataset(imnew,imLabel);
 tstset= prdataset(imnew1,imLabel1);
-prototype = gendat(trnset,0.25);
+prototype = gendat(trnset,0.001);
 disspace = proxm(prototype,'d',1);
 trainrep = trnset*disspace;
 
