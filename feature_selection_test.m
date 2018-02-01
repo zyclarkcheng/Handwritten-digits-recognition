@@ -29,9 +29,8 @@ TrnData=my_repo(mf);
 % U2 = featself([],'NN',30);  %0.06 10*100
 % U3 = featselb([],'NN',20);  %0.18 10*100
 U2 = featself([],'NN',20); %10*1000
-
-
-V = TrnData*ldc;
+W = TrnData*U2;
+V = TrnData*(W*ldc); 
 
 error = nist_eval('my_repo',V,10);
 disp(error)
